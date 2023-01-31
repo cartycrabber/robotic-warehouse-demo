@@ -3,11 +3,11 @@ import { Canvas, Vector3 } from "@react-three/fiber";
 import { Euler } from "three";
 import { useGetDynamicEntitiesQuery, useGetStaticEntitiesQuery } from "../../app/api";
 import { DynamicEntity } from "../dynamic-entity/DynamicEntity";
-import { RobotMesh } from "../map-models/RobotMesh";
 import { WarehouseMesh } from "../map-models/WarehouseMesh";
-import { ShelfMesh } from "../map-models/ShelfMesh";
 import { Position3D, Rotation3D, StaticEntity } from "../static-entity/StaticEntity";
-import { BoxMesh } from "../map-models/BoxMesh";
+import { ShelfModel } from "../map-models/ShelfModel";
+import { BoxModel } from "../map-models/BoxModel";
+import { RobotModel } from "../map-models/RobotModel";
 
 export function MapViewer() {
     const getDynamicEntitiesResponse = useGetDynamicEntitiesQuery();
@@ -72,7 +72,7 @@ const mapDynamicEntityToMesh = (dynamicEntity: DynamicEntity): JSX.Element => {
 
     switch (dynamicEntity.type) {
         case 'robot':
-            return <RobotMesh key={dynamicEntity.id} position={position} rotation={rotation} />;
+            return <RobotModel key={dynamicEntity.id} position={position} rotation={rotation} />;
         default:
             const msg = `No mesh for dynamic entity type: ${dynamicEntity.type}`;
             console.warn(msg);
@@ -86,16 +86,9 @@ const mapStaticEntityToMesh = (staticEntity: StaticEntity): JSX.Element => {
 
     switch (staticEntity.type) {
         case 'shelf':
-            return <group key={staticEntity.id} position={position} rotation={rotation}>
-                <group position={[-0.5, 0, 0]}>
-                    <ShelfMesh />
-                </group>
-                <group position={[0.5, 0, 0]}>
-                    <ShelfMesh />
-                </group>
-            </group>;
+            return <ShelfModel key={staticEntity.id} position={position} rotation={rotation} />
         case 'box':
-            return <BoxMesh key={staticEntity.id} position={position} rotation={rotation} />;
+            return <BoxModel key={staticEntity.id} position={position} rotation={rotation} />;
         default:
             const msg = `No mesh for static entity type: ${staticEntity.type}`;
             console.warn(msg);
