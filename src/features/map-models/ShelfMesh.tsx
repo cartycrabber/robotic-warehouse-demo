@@ -6,9 +6,11 @@ import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GroupProps } from "@react-three/fiber";
 
+export const GLTF_PATH = "https://robotic-warehouse-demo.azureedge.net/website-assets/shelf.glb";
+
 export function ShelfMesh(props: GroupProps) {
     const mesh = useRef(null);
-    const { nodes, materials } = useGLTF("/shelf.glb");
+    const { nodes, materials } = useGLTF(GLTF_PATH);
     return (
         <group {...props} dispose={null} ref={mesh}>
             <group
@@ -35,4 +37,4 @@ export function ShelfMesh(props: GroupProps) {
     );
 }
 
-useGLTF.preload("/shelf.glb");
+useGLTF.preload(GLTF_PATH);
