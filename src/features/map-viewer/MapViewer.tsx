@@ -7,8 +7,6 @@ import { RobotMesh } from "../map-models/RobotMesh";
 import { WarehouseMesh } from "../map-models/WarehouseMesh";
 import { ShelfMesh } from "../map-models/ShelfMesh";
 import { Position3D, Rotation3D, StaticEntity } from "../static-entity/StaticEntity";
-import { LoadedRobotMesh } from "../map-models/LoadedRobotMesh";
-import { LoadedShelfMesh } from "../map-models/LoadedShelfMesh";
 import { BoxMesh } from "../map-models/BoxMesh";
 
 export function MapViewer() {
